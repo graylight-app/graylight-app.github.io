@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gray Light - Lightweight Android Apps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <nav class="container navbar">
+        <a href="#" class="logo">
+            <img src="icons/logo.png" alt="Gray Light Logo">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#apps" class="nav-link">Apps</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Crafting Simplicity, Boosting Productivity.</h1>
+            <p>We build lightweight, intuitive, and powerful Android apps designed to streamline your daily tasks
+                without slowing you down.</p>
+        </div>
+    </section>
+
+    <!-- Apps Section -->
+    <section id="apps">
+        <div class="container">
+            <h2>Our Apps</h2>
+            <!-- Layout 1: Grid -->
+            <div class="app-grid" id="appGrid"></div>
+            <!-- Layout 2: Slider -->
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="slider-container">
+                    <div class="app-slider" id="appSlider"></div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-arrow prev" id="prevBtn">&#10094;</button>
+                    <button class="slider-arrow next" id="nextBtn">&#10095;</button>
+                </div>
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        At Gray Light, our mission is to cut through the digital clutter. We believe that technology
+                        should be an enabler, not a burden. That's why we focus on creating Android productivity apps
+                        that are not only powerful but also incredibly lightweight and easy to use. Our values are
+                        rooted in user-centric design, performance, and privacy. We design our software with a
+                        minimalist philosophy, ensuring every feature serves a clear purpose, and every interaction is
+                        intuitive, to create tools that genuinely make a difference in your productivity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <p>Have questions, feedback, or a partnership idea? We'd love to hear from you.</p>
+                <a href="mailto:graylight.destek@gmail.com" class="contact-email">graylight.destek@gmail.com</a>
+                <div class="map-container">
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24243.23518991752!2d29.05958567055663!3d40.1921700684973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca15b2a6154f79%3A0x441442374b23e8d7!2sBursa%2C%20T%C3%BCrkiye!5e0!3m2!1sen!2s!4v1688927815432!5m2!1sen!2s"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p class="footer-text">
+            <span class="original-text">&copy; 2025 Gray Light. All Rights Reserved.</span>
+            <span class="hover-text">Lost them somewhere in the terms and conditions. If found, please return to the nearest developer. 😅</span>
+        </p>
+    </div>
+</footer>
+</body>
+</html>

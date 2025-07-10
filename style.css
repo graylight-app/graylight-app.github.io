@@ -78,6 +78,16 @@ h2 {
     object-fit: contain;
 }
 
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--light-gray);
+    cursor: pointer;
+    z-index: 1100;
+}
+
 .nav-menu {
     list-style: none;
     display: flex;
@@ -335,11 +345,24 @@ h2 {
         font-size: 3rem;
     }
 
+    .menu-toggle {
+        display: block;
+    }
+
     .nav-menu {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        background-color: var(--dark-gray);
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
         display: none;
     }
 
-    .slider-arrow {
-        display: none;
+    .nav-menu.show {
+        display: flex;
     }
 }

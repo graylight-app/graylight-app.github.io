@@ -155,6 +155,13 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('resize', updateSlider);
     }
 
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+    });
+
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
     window.addEventListener('scroll', () => {
@@ -170,6 +177,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (link.getAttribute('href').includes(current)) {
                 link.classList.add('active');
             }
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show');
+            });
         });
     });
 });

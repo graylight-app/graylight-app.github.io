@@ -33,6 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
             description: 'Smart and simple unit converter for everyday use.',
             link: 'https://play.google.com/store/apps/details?id=com.graylight.unimate'
         }
+        ,
+        {
+            icon: 'icons/taxly.png',
+            name: 'Taxly',
+            description: 'Calculate tax, interest, and tips with a simple and clean interface.',
+            link: 'https://play.google.com/store/apps/details?id=com.graylight.taxly'
+        }
     ];
 
     const appGrid = document.getElementById('appGrid');

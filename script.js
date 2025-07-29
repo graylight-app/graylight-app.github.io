@@ -32,13 +32,24 @@ document.addEventListener('DOMContentLoaded', function () {
             name: 'Uni Mate',
             description: 'Smart and simple unit converter for everyday use.',
             link: 'https://play.google.com/store/apps/details?id=com.graylight.unimate'
-        }
-        ,
+        },
         {
             icon: 'icons/taxly.png',
             name: 'Taxly',
             description: 'Calculate tax, interest, and tips with a simple and clean interface.',
             link: 'https://play.google.com/store/apps/details?id=com.graylight.taxly'
+        },
+        {
+            icon: 'icons/focustimer.png',
+            name: 'Focus Timer',
+            description: 'Stay focused, manage your time, and boost daily productivity.',
+            link: 'https://play.google.com/store/apps/details?id=com.graylight.focustimer'
+        },
+        {
+            icon: 'icons/bubblelevel.png',
+            name: 'Bubble Level',
+            description: 'Accurate & simple spirit level app for precise alignment anywhere.',
+            link: 'https://play.google.com/store/apps/details?id=com.graylight.bubblelevel'
         }
     ];
 

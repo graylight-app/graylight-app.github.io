@@ -1,87 +1,45 @@
-document.addEventListener('DOMContentLoaded', function () {
-
+document.addEventListener('DOMContentLoaded', () => {
     const useSliderLayout = true;
-
-    const appsData = [
-        {
-            icon: 'icons/qrcode.png',
-            name: 'QR Code Scanner',
-            description: 'QR Code Reader & Barcode Scanner. Fast! Scan, copy, open instantly.',
-            link: 'https://play.google.com/store/apps/details?id=com.graylight.qrcodescanner'
-        },
-        {
-            icon: 'icons/colorpicker.png',
-            name: 'Color Picker',
-            description: 'Pick, copy and use colors instantly in your projects!',
-            link: 'https://play.google.com/store/apps/details?id=com.graylight.colorpicker'
-        },
-        {
-            icon: 'icons/keyforge.png',
-            name: 'Key Forge',
-            description: 'Generate strong passwords & PINs. Secure, customizable, truly random keys.',
-            link: 'https://play.google.com/store/apps/details?id=com.graylight.keyforge'
-        },
-        {
-            icon: 'icons/mydevice.png',
-            name: 'My Device IDs',
-            description: 'Easily access all numerical data of your device, such as IP address and more.',
-            link: 'https://play.google.com/store/apps/details?id=com.graylight.mydevice'
-        },
-        {
-            icon: 'icons/unimate.png',
-            name: 'Uni Mate',
-            description: 'Smart and simple unit converter for everyday use.',
-            link: 'https://play.google.com/store/apps/details?id=com.graylight.unimate'
-        },
-        {
-            icon: 'icons/taxly.png',
-            name: 'Taxly',
-            description: 'Calculate tax, interest, and tips with a simple and clean interface.',
-            link: 'https://play.google.com/store/apps/details?id=com.graylight.taxly'
-        },
-        {
-            icon: 'icons/focustimer.png',
-            name: 'Focus Timer',
-            description: 'Stay focused, manage your time, and boost daily productivity.',
-            link: 'https://play.google.com/store/apps/details?id=com.graylight.focustimer'
-        },
-        {
-            icon: 'icons/bubblelevel.png',
-            name: 'Bubble Level',
-            description: 'Accurate & simple spirit level app for precise alignment anywhere.',
-            link: 'https://play.google.com/store/apps/details?id=com.graylight.bubblelevel'
-        }
-    ];
 
     const appGrid = document.getElementById('appGrid');
     const sliderWrapper = document.getElementById('sliderWrapper');
 
-    if (useSliderLayout) {
-        appGrid.style.display = 'none';
-        sliderWrapper.style.display = 'block';
-        initSlider();
-    } else {
-        appGrid.style.display = 'grid';
-        sliderWrapper.style.display = 'none';
-        populateGrid();
+    let appsData = [];
+
+    fetch('apps.json')
+        .then(res => res.json())
+        .then(data => {
+            appsData = data;
+            useSliderLayout ? setupSlider() : populateGrid();
+        })
+        .catch(err => console.error('JSON c:', err));
+
+    function createAppCardHTML(app) {
+        return `
+        <img src="${app.icon}" alt="${app.name} Icon" class="app-icon">
+        <h3>${app.name}</h3>
+        <p>${app.description}</p>
+        <a href="${app.link}" target="_blank" rel="noopener noreferrer">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                 alt="Get it on Google Play" class="google-play-badge">
+        </a>
+    `;
     }
 
     function populateGrid() {
         appGrid.innerHTML = '';
+        sliderWrapper.style.display = 'none';
+        appGrid.style.display = 'grid';
+
         appsData.forEach(app => {
             const card = document.createElement('div');
             card.className = 'app-card active';
-            card.innerHTML = `
-                        <img src="${app.icon}" alt="${app.name} Icon" class="app-icon">
-                        <h3>${app.name}</h3>
-                        <p>${app.description}</p>
-                        <a href="${app.link}" target="_blank" rel="noopener noreferrer" class="play-store-link">Get on Google Play</a>
-                    `;
+            card.innerHTML = createAppCardHTML(app);
             appGrid.appendChild(card);
         });
     }
 
-    function initSlider() {
+    function setupSlider() {
         const slider = document.getElementById('appSlider');
         const dotsContainer = document.getElementById('sliderDots');
         const prevBtn = document.getElementById('prevBtn');
@@ -89,18 +47,17 @@ document.addEventListener('DOMContentLoaded', function () {
         let currentIndex = 0;
         let autoSlideInterval;
 
+        sliderWrapper.style.display = 'block';
+        appGrid.style.display = 'none';
+
         function populateSlider() {
             slider.innerHTML = '';
             dotsContainer.innerHTML = '';
+
             appsData.forEach((app, index) => {
                 const card = document.createElement('div');
                 card.className = 'app-card';
-                card.innerHTML = `
-                            <img src="${app.icon}" alt="${app.name} Icon" class="app-icon">
-                            <h3>${app.name}</h3>
-                            <p>${app.description}</p>
-                            <a href="${app.link}" target="_blank" rel="noopener noreferrer" class="play-store-link">Get on Google Play</a>
-                        `;
+                card.innerHTML = createAppCardHTML(app);
                 slider.appendChild(card);
 
                 const dot = document.createElement('span');
@@ -112,38 +69,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function updateSlider() {
             const cards = slider.querySelectorAll('.app-card');
+            if (cards.length === 0) return;
+
             const cardWidth = cards[0].offsetWidth;
-            const margin = parseInt(window.getComputedStyle(cards[0]).marginRight) * 2;
-            const totalCardWidth = cardWidth + margin;
+            const margin = parseInt(getComputedStyle(cards[0]).marginRight) * 2;
+            const totalWidth = cardWidth + margin;
+            const offset = (slider.parentElement.clientWidth / 2) - (totalWidth / 2);
 
-            const offset = (slider.parentElement.clientWidth / 2) - (totalCardWidth / 2);
-            slider.style.left = `${offset - (currentIndex * totalCardWidth)}px`;
+            slider.style.left = `${offset - (currentIndex * totalWidth)}px`;
 
-            cards.forEach((card, index) => {
-                card.classList.remove('active');
-                if (index === currentIndex) {
-                    card.classList.add('active');
-                }
-            });
+            cards.forEach((card, i) =>
+                card.classList.toggle('active', i === currentIndex)
+            );
 
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentIndex].classList.add('active');
+            const dots = dotsContainer.querySelectorAll('.dot');
+            dots.forEach((dot, i) =>
+                dot.classList.toggle('active', i === currentIndex)
+            );
         }
 
-        function showNextSlide() {
+        function nextSlide() {
             currentIndex = (currentIndex + 1) % appsData.length;
             updateSlider();
         }
 
-        function showPrevSlide() {
+        function prevSlide() {
             currentIndex = (currentIndex - 1 + appsData.length) % appsData.length;
             updateSlider();
         }
 
         function startAutoSlide() {
             stopAutoSlide();
-            autoSlideInterval = setInterval(showNextSlide, 5000); // 5 saniye
+            autoSlideInterval = setInterval(nextSlide, 5000);
         }
 
         function stopAutoSlide() {
@@ -155,14 +112,16 @@ document.addEventListener('DOMContentLoaded', function () {
         startAutoSlide();
 
         nextBtn.addEventListener('click', () => {
-            showNextSlide();
+            nextSlide();
             stopAutoSlide();
         });
+
         prevBtn.addEventListener('click', () => {
-            showPrevSlide();
+            prevSlide();
             stopAutoSlide();
         });
-        dotsContainer.addEventListener('click', (e) => {
+
+        dotsContainer.addEventListener('click', e => {
             if (e.target.classList.contains('dot')) {
                 currentIndex = parseInt(e.target.dataset.index);
                 updateSlider();
@@ -173,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('resize', updateSlider);
     }
 
+    // Responsive navbar scroll active link
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
@@ -185,19 +145,12 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', () => {
         let current = '';
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (window.scrollY >= sectionTop - 150) {
+            if (window.scrollY >= section.offsetTop - 150) {
                 current = section.getAttribute('id');
             }
         });
         navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('show');
-            });
+            link.classList.toggle('active', link.getAttribute('href').includes(current));
         });
     });
 });

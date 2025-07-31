@@ -1,0 +1,56 @@
+﻿[
+  {
+    "icon": "icons/qrcode.png",
+    "name": "QR Code Scanner",
+    "description": "QR Code Reader & Barcode Scanner. Fast! Scan, copy, open instantly.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.qrcodescanner"
+  },
+  {
+    "icon": "icons/colorpicker.png",
+    "name": "Color Picker",
+    "description": "Pick, copy and use colors instantly in your projects!",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.colorpicker"
+  },
+  {
+    "icon": "icons/keyforge.png",
+    "name": "Key Forge",
+    "description": "Generate strong passwords & PINs. Secure, customizable, truly random keys.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.keyforge"
+  },
+  {
+    "icon": "icons/mydevice.png",
+    "name": "My Device IDs",
+    "description": "Easily access all numerical data of your device, such as IP address and more.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.mydevice"
+  },
+  {
+    "icon": "icons/unimate.png",
+    "name": "Uni Mate",
+    "description": "Smart and simple unit converter for everyday use.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.unimate"
+  },
+  {
+    "icon": "icons/taxly.png",
+    "name": "Taxly",
+    "description": "Calculate tax, interest, and tips with a simple and clean interface.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.taxly"
+  },
+  {
+    "icon": "icons/focustimer.png",
+    "name": "Focus Timer",
+    "description": "Stay focused, manage your time, and boost daily productivity.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.focustimer"
+  },
+  {
+    "icon": "icons/bubblelevel.png",
+    "name": "Bubble Level",
+    "description": "Accurate & simple spirit level app for precise alignment anywhere.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.bubblelevel"
+  },
+  {
+    "icon": "icons/qiblacompass.png",
+    "name": "Qibla Compass",
+    "description": "Simple and reliable compass app to find the Qibla direction easily.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.qiblacompass"
+  }
+]

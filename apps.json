@@ -46,11 +46,5 @@
     "name": "Bubble Level",
     "description": "Accurate & simple spirit level app for precise alignment anywhere.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.bubblelevel"
-  },
-  {
-    "icon": "icons/qiblacompass.png",
-    "name": "Qibla Compass",
-    "description": "Simple and reliable compass app to find the Qibla direction easily.",
-    "link": "https://play.google.com/store/apps/details?id=com.graylight.qiblacompass"
   }
 ]

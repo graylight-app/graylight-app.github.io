@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="${app.icon}" alt="${app.name} Icon" class="app-icon">
         <h3>${app.name}</h3>
         <p>${app.description}</p>
-        <a href="${app.link}" target="_blank" rel="noopener noreferrer">
+        <a href="${app.link}" class="google-play-link" target="_blank" rel="noopener noreferrer">
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                  alt="Get it on Google Play" class="google-play-badge">
         </a>

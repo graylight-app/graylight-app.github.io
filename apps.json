@@ -2,49 +2,55 @@
   {
     "icon": "icons/qrcode.png",
     "name": "QR Code Scanner",
-    "description": "QR Code Reader & Barcode Scanner. Fast! Scan, copy, open instantly.",
+    "description": "Fast and reliable QR code & barcode scanner. Instantly scan, copy, and open codes with ease.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.qrcodescanner"
   },
   {
     "icon": "icons/colorpicker.png",
     "name": "Color Picker",
-    "description": "Pick, copy and use colors instantly in your projects!",
+    "description": "Quickly pick, copy, and use colors seamlessly in your projects with precision.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.colorpicker"
   },
   {
     "icon": "icons/keyforge.png",
     "name": "Key Forge",
-    "description": "Generate strong passwords & PINs. Secure, customizable, truly random keys.",
+    "description": "Generate strong, truly random passwords and PINs. Secure and customizable for your needs.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.keyforge"
   },
   {
     "icon": "icons/mydevice.png",
     "name": "My Device IDs",
-    "description": "Easily access all numerical data of your device, such as IP address and more.",
+    "description": "Access all your device’s numerical data, including IP address, effortlessly and clearly.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.mydevice"
   },
   {
     "icon": "icons/unimate.png",
     "name": "Uni Mate",
-    "description": "Smart and simple unit converter for everyday use.",
+    "description": "Smart, simple unit converter designed for everyday convenience and speed.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.unimate"
   },
   {
     "icon": "icons/taxly.png",
     "name": "Taxly",
-    "description": "Calculate tax, interest, and tips with a simple and clean interface.",
+    "description": "Calculate taxes, interest, and tips easily with a clean, intuitive interface.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.taxly"
   },
   {
     "icon": "icons/focustimer.png",
     "name": "Focus Timer",
-    "description": "Stay focused, manage your time, and boost daily productivity.",
+    "description": "Boost your productivity by managing your focus and time with simple, effective tools.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.focustimer"
   },
   {
     "icon": "icons/bubblelevel.png",
     "name": "Bubble Level",
-    "description": "Accurate & simple spirit level app for precise alignment anywhere.",
+    "description": "Accurate and easy-to-use spirit level app for precise alignment anytime, anywhere.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.bubblelevel"
+  },
+  {
+    "icon": "icons/qiblacompass.png",
+    "name": "Qibla Compass",
+    "description": "Find the Qibla direction quickly and reliably with this simple compass app.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.qiblacompass"
   }
 ]

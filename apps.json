@@ -52,5 +52,11 @@
     "name": "Qibla Compass",
     "description": "Find the Qibla direction quickly and reliably with this simple compass app.",
     "link": "https://play.google.com/store/apps/details?id=com.graylight.qiblacompass"
+  },
+  {
+    "icon": "icons/imsakiyah.png",
+    "name": "Prayer Times",
+    "description": "Stay on track with accurate daily prayer times. Simple, clean, and always up-to-date — wherever you are.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.imsakiyah"
   }
 ]

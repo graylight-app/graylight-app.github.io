@@ -3,62 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gray Light - Crafting simple, fast, and lightweight Android utility apps. Secure tools built for maximum productivity and clean user experience.">
+    <meta name="keywords" content="Android apps, lightweight apps, productivity tools, utility apps, QR scanner, color picker, focus timer, secure password generator">
     <meta name="google-site-verification" content="pOMGxU0bpp1PWiFspCqMMlFdGKy8f0lOejvEV5mBO14" />
-    <title>Gray Light - Lightweight Android Apps</title>
+    <title>Gray Light - Simple & Lightweight Android Apps</title>
     <link rel="icon" type="image/png" href="icons/logo.png">
+    
+    <!-- Google Fonts: Outfit for Headings, Inter for Body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
 
+<!-- Background Decorative Glow Blobs -->
+<div class="glow-blob blob-1"></div>
+<div class="glow-blob blob-2"></div>
+<div class="glow-blob blob-3"></div>
+
 <!-- Header -->
 <header class="header">
     <nav class="container navbar">
-        <a href="#" class="logo">
+        <a href="#" class="logo" id="logoLink">
             <img src="icons/logo.png" alt="Gray Light Logo">
+            <span class="logo-text">Gray<span>Light</span></span>
         </a>
-        <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation">
-            &#9776;
-        </button>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#apps" class="nav-link">Apps</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://graylightapp.blogspot.com" class="nav-link">Blog</a>
-            </li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#apps" class="nav-link">Apps</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a target="_blank" rel="noopener noreferrer" href="https://graylightapp.blogspot.com" class="nav-link">Blog</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                    <!-- Sun Icon (for Dark Mode state) -->
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon (for Light Mode state) -->
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
     </nav>
 </header>
 
 <main>
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Crafting Simplicity, Boosting Productivity.</h1>
-            <p>We create clean, fast, and user-friendly Android apps that help you focus on what truly matters.
-                Our goal is to simplify complex tasks, enhance your efficiency, and deliver powerful tools
-                that work seamlessly—anytime, anywhere.</p>
+        <div class="container hero-content-wrapper">
+            <div class="hero-content fade-in-up">
+                <span class="hero-badge">Android App Development Studio</span>
+                <h1>Crafting Simplicity, Boosting Productivity.</h1>
+                <p>We build lightweight, secure, and clean utility apps. Our goal is to streamline daily tasks, eliminate bloatware, and place essential tools directly in your hands.</p>
+                <div class="hero-buttons">
+                    <a href="#apps" class="btn btn-primary">Explore Our Apps</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-graphic fade-in-up delay-1">
+                <!-- Abstract visual representing simplicity/speed -->
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="screen-header"></div>
+                        <div class="screen-body">
+                            <div class="widget widget-1"></div>
+                            <div class="widget widget-2"></div>
+                            <div class="widget widget-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down-indicator">
+            <a href="#apps" aria-label="Scroll to Apps">
+                <span class="mouse">
+                    <span class="wheel"></span>
+                </span>
+            </a>
         </div>
     </section>
 
     <!-- Apps Section -->
-    <section id="apps">
+    <section id="apps" class="section scroll-reveal">
         <div class="container">
-            <h2>Our Apps</h2>
+            <div class="section-header">
+                <h2>Our Android Apps</h2>
+                <p>Designed with a minimalist philosophy—no annoying permissions, fast load times, and clean UI.</p>
+                <div class="layout-switch-container">
+                    <span>Layout:</span>
+                    <div class="layout-toggle-buttons">
+                        <button id="gridBtn" class="layout-btn active" title="Grid Layout">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        </button>
+                        <button id="sliderBtn" class="layout-btn" title="Slider Layout">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="14" y1="6" x2="20" y2="12"></line><line x1="14" y1="18" x2="20" y2="12"></line></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Layout 1: Grid -->
             <div class="app-grid" id="appGrid"></div>
+            
             <!-- Layout 2: Slider -->
-            <div class="slider-wrapper" id="sliderWrapper">
+            <div class="slider-wrapper" id="sliderWrapper" style="display: none;">
                 <div class="slider-container">
                     <div class="app-slider" id="appSlider"></div>
                 </div>
                 <div class="slider-controls">
-                    <button class="slider-arrow prev" id="prevBtn">&#10094;</button>
-                    <button class="slider-arrow next" id="nextBtn">&#10095;</button>
+                    <button class="slider-arrow prev" id="prevBtn" aria-label="Previous App">&#10094;</button>
+                    <button class="slider-arrow next" id="nextBtn" aria-label="Next App">&#10095;</button>
                 </div>
                 <div class="slider-dots" id="sliderDots"></div>
             </div>
@@ -66,46 +141,75 @@
     </section>
 
     <!-- About Section -->
-    <section id="about">
+    <section id="about" class="section scroll-reveal">
         <div class="container">
-            <h2>About Us</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        At Gray Light, we understand that in today’s fast-paced digital world, simplicity is power.
-                        Our mission is to clear away unnecessary complexity, allowing technology to serve as a seamless
-                        tool
-                        that empowers rather than overwhelms. We craft Android apps designed not only to boost your
-                        productivity but to do so with elegance and minimal resource use.<br><br>
-
-                        Every product we build reflects our commitment to intuitive design, performance, and respect for
-                        user privacy. We believe great software should feel natural and effortless, integrating smoothly
-                        into your daily workflow without distractions or burdensome permissions.<br><br>
-
-                        Our minimalist philosophy means we focus only on what truly matters — features that enhance your
-                        efficiency and interactions that feel fluid and purposeful. We aim to create tools that aren’t
-                        just functional, but genuinely transformative, helping you reclaim time and focus in a cluttered
-                        digital landscape.<br><br>
-
-                        At Gray Light, less is more, and simplicity is the ultimate sophistication.
-                    </p>
+            <div class="about-grid">
+                <div class="about-visual">
+                    <div class="card-stack">
+                        <div class="stack-card card-top">
+                            <div class="card-icon">⚡</div>
+                            <h4>Fast & Clean</h4>
+                            <p>Optimized for minimal resource consumption.</p>
+                        </div>
+                        <div class="stack-card card-mid">
+                            <div class="card-icon">🛡️</div>
+                            <h4>Privacy First</h4>
+                            <p>No intrusive tracking or permissions required.</p>
+                        </div>
+                        <div class="stack-card card-bot">
+                            <div class="card-icon">✨</div>
+                            <h4>Simple Design</h4>
+                            <p>Intuitive user interface for frictionless use.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content-text">
+                    <h2>About Us</h2>
+                    <p>At <strong>Gray Light</strong>, we understand that in today’s fast-paced digital world, simplicity is power. Our mission is to clear away unnecessary complexity, allowing technology to serve as a seamless tool that empowers rather than overwhelms.</p>
+                    <p>Every product we build reflects our commitment to intuitive design, performance, and respect for user privacy. We believe great software should feel natural and effortless, integrating smoothly into your daily workflow without distractions or burdensome permissions.</p>
+                    <p>Our minimalist philosophy means we focus only on what truly matters — features that enhance your efficiency and interactions that feel fluid and purposeful. Less is more, and simplicity is the ultimate sophistication.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">10+</span>
+                            <span class="stat-label">Active Apps</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-label">Secure</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">0</span>
+                            <span class="stat-label">Ads Spam</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" class="section scroll-reveal">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <p>Have questions, feedback, or a partnership idea? We'd love to hear from you.</p>
-                <a href="mailto:graylight.destek@gmail.com" class="contact-email">graylight.destek@gmail.com</a>
+            <div class="contact-card">
+                <h2>Get In Touch</h2>
+                <p>Have questions, feedback, or a partnership idea? We'd love to hear from you. Tap below to copy our email or write to us.</p>
+                
+                <div class="email-copy-wrapper">
+                    <button class="contact-email" id="emailBtn" data-email="graylight.destek@gmail.com" title="Click to copy email">
+                        <span class="email-text">graylight.destek@gmail.com</span>
+                        <span class="copy-icon">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </span>
+                        <span class="tooltip" id="emailTooltip">Copy to clipboard</span>
+                    </button>
+                </div>
+                
                 <div class="map-container">
                     <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24243.23518991752!2d29.05958567055663!3d40.1921700684973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca15b2a6154f79%3A0x441442374b23e8d7!2sBursa%2C%20T%C3%BCrkiye!5e0!3m2!1sen!2s!4v1688927815432!5m2!1sen!2s"
                             allowfullscreen=""
                             loading="lazy"
+                            aria-label="Google Maps showing Bursa, Türkiye"
                             referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
@@ -116,11 +220,14 @@
 
 <!-- Footer -->
 <footer class="footer">
-    <div class="container">
+    <div class="container footer-content">
         <p class="footer-text">
             <span class="original-text">&copy; 2025 Gray Light. All Rights Reserved.</span>
             <span class="hover-text">Lost them somewhere in the terms and conditions. If found, please return to the nearest developer. 😅</span>
         </p>
+        <div class="footer-links">
+            <a href="privacy/index.html" class="footer-link">Privacy Policy</a>
+        </div>
     </div>
 </footer>
 </body>

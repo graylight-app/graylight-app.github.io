@@ -1,215 +1,145 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let useSliderLayout = false; // Default to Grid layout for better overview
     let appsData = [];
-    let currentIndex = 0;
-    let autoSlideInterval;
 
-    const appGrid = document.getElementById('appGrid');
-    const sliderWrapper = document.getElementById('sliderWrapper');
-    const gridBtn = document.getElementById('gridBtn');
-    const sliderBtn = document.getElementById('sliderBtn');
+    const appRail = document.getElementById('appGrid');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const railThumb = document.getElementById('railThumb');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     /* --- Fetch and Initialize --- */
     fetch('apps.json')
         .then(res => res.json())
+        .catch(err => {
+            // Opened from disk (file://): fetch is blocked, use the bundled copy of apps.json.
+            if (Array.isArray(window.GL_APPS_FALLBACK)) return window.GL_APPS_FALLBACK;
+            throw err;
+        })
         .then(data => {
             appsData = data;
-            initializeLayout();
+            populateHero();
+            populateRail();
         })
-        .catch(err => console.error('Error loading apps:', err));
+        .catch(err => {
+            console.error('Error loading apps:', err);
+            appRail.innerHTML = '<p class="apps-error">Apps could not be loaded right now. Please try again later.</p>';
+        });
 
-    function initializeLayout() {
-        if (useSliderLayout) {
-            setupSlider();
-        } else {
-            populateGrid();
-        }
-        setupScrollReveal();
+    // 192px thumbnails keep the page light; fall back to the full icon if one is missing.
+    function thumbSrc(icon) {
+        return icon.replace(/^icons\//, 'icons/thumb/');
     }
 
-    function createAppCardHTML(app, index) {
+    /* --- Hero icon wall --- */
+    function populateHero() {
+        const wall = document.getElementById('heroIcons');
+        if (!wall) return;
+        wall.innerHTML = '';
+        appsData.forEach((app, idx) => {
+            const link = document.createElement('a');
+            link.className = 'wall-icon';
+            link.href = app.link;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.setAttribute('role', 'listitem');
+            link.setAttribute('aria-label', `${app.name} on Google Play`);
+            link.dataset.name = app.name;
+            link.style.setProperty('--i', idx);
+            link.innerHTML = `<img src="${thumbSrc(app.icon)}" alt="" width="96" height="96" decoding="async" onerror="this.onerror=null;this.src='${app.icon}'">`;
+            wall.appendChild(link);
+        });
+    }
+
+    /* --- Apps rail (horizontal scroll, two rows on desktop) --- */
+    function createAppCardHTML(app) {
         return `
-            <img src="${app.icon}" alt="${app.name} Icon" class="app-icon" loading="lazy">
-            <h3>${app.name}</h3>
+            <div class="app-card-head">
+                <img src="${thumbSrc(app.icon)}" alt="${app.name} icon" class="app-icon" width="64" height="64" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${app.icon}'">
+                <h3>${app.name}</h3>
+            </div>
             <p>${app.description}</p>
             <a href="${app.link}" class="google-play-link" target="_blank" rel="noopener noreferrer">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                     alt="Get it on Google Play" class="google-play-badge" loading="lazy">
+                     alt="Get it on Google Play" class="google-play-badge" width="180" height="53" loading="lazy">
             </a>
         `;
     }
 
-    function populateGrid() {
-        stopAutoSlide();
-        appGrid.innerHTML = '';
-        sliderWrapper.style.display = 'none';
-        appGrid.style.display = 'grid';
-
-        appsData.forEach((app, idx) => {
+    function populateRail() {
+        appRail.innerHTML = '';
+        appsData.forEach(app => {
             const card = document.createElement('div');
             card.className = 'app-card';
-            card.innerHTML = createAppCardHTML(app, idx);
-            // Apply delay to stagger load animation in grid
-            card.style.animationDelay = `${idx * 50}ms`;
-            appGrid.appendChild(card);
+            card.innerHTML = createAppCardHTML(app);
+            appRail.appendChild(card);
         });
+        updateRail();
     }
 
-    /* --- Slider Logic --- */
-    function setupSlider() {
-        const slider = document.getElementById('appSlider');
-        const dotsContainer = document.getElementById('sliderDots');
-        currentIndex = 0;
+    let railTicking = false;
+    function updateRail() {
+        const max = appRail.scrollWidth - appRail.clientWidth;
+        const x = appRail.scrollLeft;
+        const hasOverflow = max > 2;
 
-        sliderWrapper.style.display = 'block';
-        appGrid.style.display = 'none';
+        if (prevBtn) prevBtn.disabled = !hasOverflow || x <= 2;
+        if (nextBtn) nextBtn.disabled = !hasOverflow || x >= max - 2;
 
-        // Populate Slider Cards and Dots
-        slider.innerHTML = '';
-        dotsContainer.innerHTML = '';
-
-        appsData.forEach((app, index) => {
-            const card = document.createElement('div');
-            card.className = 'app-card';
-            card.innerHTML = createAppCardHTML(app, index);
-            slider.appendChild(card);
-
-            const dot = document.createElement('span');
-            dot.className = 'dot';
-            dot.dataset.index = index.toString();
-            dotsContainer.appendChild(dot);
-        });
-
-        updateSlider();
-        startAutoSlide();
-    }
-
-    function updateSlider() {
-        const slider = document.getElementById('appSlider');
-        const dotsContainer = document.getElementById('sliderDots');
-        const cards = slider.querySelectorAll('.app-card');
-        if (cards.length === 0) return;
-
-        const cardWidth = cards[0].offsetWidth;
-        const margin = parseInt(getComputedStyle(cards[0]).marginRight) * 2;
-        const totalWidth = cardWidth + margin;
-        
-        // Align selected card to center of slider parent
-        const offset = (slider.parentElement.clientWidth / 2) - (totalWidth / 2);
-        slider.style.left = `${offset - (currentIndex * totalWidth)}px`;
-
-        cards.forEach((card, i) => {
-            card.classList.toggle('active', i === currentIndex);
-        });
-
-        const dots = dotsContainer.querySelectorAll('.dot');
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
-    }
-
-    function nextSlide() {
-        if (appsData.length === 0) return;
-        currentIndex = (currentIndex + 1) % appsData.length;
-        updateSlider();
-    }
-
-    function prevSlide() {
-        if (appsData.length === 0) return;
-        currentIndex = (currentIndex - 1 + appsData.length) % appsData.length;
-        updateSlider();
-    }
-
-    function startAutoSlide() {
-        stopAutoSlide();
-        autoSlideInterval = setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoSlide() {
-        if (autoSlideInterval) {
-            clearInterval(autoSlideInterval);
+        if (railThumb) {
+            const ratio = hasOverflow ? appRail.clientWidth / appRail.scrollWidth : 1;
+            railThumb.style.width = `${ratio * 100}%`;
+            railThumb.style.left = hasOverflow ? `${(x / max) * (100 - ratio * 100)}%` : '0';
         }
+
+        // Soft fade only on the side that still has content.
+        appRail.style.setProperty('--fade-l', hasOverflow && x > 2 ? '40px' : '0px');
+        appRail.style.setProperty('--fade-r', hasOverflow && x < max - 2 ? '40px' : '0px');
+        railTicking = false;
     }
 
-    /* --- Slider Event Listeners --- */
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('sliderDots');
-
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            startAutoSlide(); // reset timer
-        });
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            startAutoSlide(); // reset timer
-        });
-    }
-
-    if (dotsContainer) {
-        dotsContainer.addEventListener('click', e => {
-            if (e.target.classList.contains('dot')) {
-                currentIndex = parseInt(e.target.dataset.index);
-                updateSlider();
-                startAutoSlide(); // reset timer
-            }
-        });
-    }
-
-    window.addEventListener('resize', () => {
-        if (useSliderLayout) {
-            updateSlider();
+    appRail.addEventListener('scroll', () => {
+        if (!railTicking) {
+            railTicking = true;
+            requestAnimationFrame(updateRail);
         }
-    });
+    }, { passive: true });
 
-    /* --- Layout Toggle Button Handlers --- */
-    if (gridBtn && sliderBtn) {
-        gridBtn.addEventListener('click', () => {
-            if (useSliderLayout) {
-                useSliderLayout = false;
-                gridBtn.classList.add('active');
-                sliderBtn.classList.remove('active');
-                populateGrid();
-            }
-        });
+    window.addEventListener('resize', updateRail);
 
-        sliderBtn.addEventListener('click', () => {
-            if (!useSliderLayout) {
-                useSliderLayout = true;
-                sliderBtn.classList.add('active');
-                gridBtn.classList.remove('active');
-                setupSlider();
-            }
+    function scrollRail(direction) {
+        appRail.scrollBy({
+            left: direction * appRail.clientWidth * 0.85,
+            behavior: reduceMotion.matches ? 'auto' : 'smooth'
         });
     }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollRail(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollRail(1));
 
     /* --- Responsive Navbar Drawer --- */
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('show');
             menuToggle.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', navMenu.classList.contains('show'));
         });
 
-        // Close menu when clicking link
-        const navLinks = document.querySelectorAll('.nav-link');
+        // Close menu when clicking a link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('show');
                 menuToggle.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
             });
         });
     }
 
     /* --- Active Link Highlighting on Scroll --- */
     const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
 
     window.addEventListener('scroll', () => {
         let current = '';
@@ -226,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.add('active');
             }
         });
-    });
+    }, { passive: true });
 
     /* --- Dark Mode Toggle --- */
     const themeToggle = document.getElementById('themeToggle');
@@ -264,29 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(err => {
                     console.error('Failed to copy text: ', err);
                 });
-        });
-    }
-
-    /* --- Scroll Reveal Animation --- */
-    function setupScrollReveal() {
-        const reveals = document.querySelectorAll('.scroll-reveal');
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Trigger once
-                }
-            });
-        }, observerOptions);
-
-        reveals.forEach(reveal => {
-            observer.observe(reveal);
         });
     }
 });

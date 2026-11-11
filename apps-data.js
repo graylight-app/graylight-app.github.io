@@ -1,0 +1,64 @@
+/* Generated from apps.json. Fallback used only when the page is opened directly from disk (file://),
+   where browsers block fetch("apps.json"). Regenerate when apps.json changes. */
+window.GL_APPS_FALLBACK = [
+  {
+    "icon": "icons/qrcode.png",
+    "name": "QR Code Scanner",
+    "description": "Fast and reliable QR code & barcode scanner. Instantly scan, copy, and open codes with ease.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.qrcodescanner"
+  },
+  {
+    "icon": "icons/colorpicker.png",
+    "name": "Color Picker",
+    "description": "Quickly pick, copy, and use colors seamlessly in your projects with precision.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.colorpicker"
+  },
+  {
+    "icon": "icons/keyforge.png",
+    "name": "Key Forge",
+    "description": "Generate strong, truly random passwords and PINs. Secure and customizable for your needs.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.keyforge"
+  },
+  {
+    "icon": "icons/mydevice.png",
+    "name": "My Device IDs",
+    "description": "Access all your device’s numerical data, including IP address, effortlessly and clearly.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.mydevice"
+  },
+  {
+    "icon": "icons/unimate.png",
+    "name": "Uni Mate",
+    "description": "Smart, simple unit converter designed for everyday convenience and speed.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.unimate"
+  },
+  {
+    "icon": "icons/taxly.png",
+    "name": "Taxly",
+    "description": "Calculate taxes, interest, and tips easily with a clean, intuitive interface.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.taxly"
+  },
+  {
+    "icon": "icons/focustimer.png",
+    "name": "Focus Timer",
+    "description": "Boost your productivity by managing your focus and time with simple, effective tools.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.focustimer"
+  },
+  {
+    "icon": "icons/bubblelevel.png",
+    "name": "Bubble Level",
+    "description": "Accurate and easy-to-use spirit level app for precise alignment anytime, anywhere.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.bubblelevel"
+  },
+  {
+    "icon": "icons/qiblacompass.png",
+    "name": "Qibla Compass",
+    "description": "Find the Qibla direction quickly and reliably with this simple compass app.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.qiblacompass"
+  },
+  {
+    "icon": "icons/imsakiyah.png",
+    "name": "Prayer Times",
+    "description": "Stay on track with accurate daily prayer times. Simple, clean, and always up-to-date — wherever you are.",
+    "link": "https://play.google.com/store/apps/details?id=com.graylight.imsakiyah"
+  }
+];

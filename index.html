@@ -3,33 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gray Light - Crafting simple, fast, and lightweight Android utility apps. Secure tools built for maximum productivity and clean user experience.">
+    <meta name="description" content="Gray Light builds lightweight, fast Android utility apps: QR scanner, color picker, focus timer and more.">
     <meta name="keywords" content="Android apps, lightweight apps, productivity tools, utility apps, QR scanner, color picker, focus timer, secure password generator">
     <meta name="google-site-verification" content="pOMGxU0bpp1PWiFspCqMMlFdGKy8f0lOejvEV5mBO14" />
-    <title>Gray Light - Simple & Lightweight Android Apps</title>
-    <link rel="icon" type="image/png" href="icons/logo.png">
-    
-    <!-- Google Fonts: Outfit for Headings, Inter for Body -->
+    <meta name="theme-color" content="#f7f9fb">
+    <title>Gray Light | Lightweight Android Apps</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Gray Light">
+    <meta property="og:title" content="Gray Light | Lightweight Android Apps">
+    <meta property="og:description" content="Gray Light builds lightweight, fast Android utility apps: QR scanner, color picker, focus timer and more.">
+    <meta property="og:image" content="icons/graylight-logo-dark.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Gray Light | Lightweight Android Apps">
+    <meta name="twitter:description" content="Gray Light builds lightweight, fast Android utility apps: QR scanner, color picker, focus timer and more.">
+    <meta name="twitter:image" content="icons/graylight-logo-dark.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Gray Light",
+        "logo": "icons/graylight-logo-dark.png",
+        "email": "graylight.destek@gmail.com",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "graylight.destek@gmail.com"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bursa",
+            "addressCountry": "TR"
+        }
+    }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="icons/graylight-logo.svg">
+    <link rel="icon" type="image/png" href="icons/graylight-logo-dark.png">
+
+    <!-- Fonts: Newsreader (headings), Geist (body). Two families, few weights, swap to avoid blocking text. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+    <script src="apps-data.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 <body>
 
-<!-- Background Decorative Glow Blobs -->
-<div class="glow-blob blob-1"></div>
-<div class="glow-blob blob-2"></div>
-<div class="glow-blob blob-3"></div>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Header -->
 <header class="header">
-    <nav class="container navbar">
-        <a href="#" class="logo" id="logoLink">
-            <img src="icons/logo.png" alt="Gray Light Logo">
-            <span class="logo-text">Gray<span>Light</span></span>
+    <nav class="container navbar" aria-label="Main">
+        <a href="#home" class="logo" id="logoLink" aria-label="Gray Light, home">
+            <!-- Two PNG lockups (1536x336, 6x), swapped by theme in CSS. -->
+            <img class="logo-img logo-img-light" src="icons/graylight-lockup-light.png" width="1536" height="336" alt="">
+            <img class="logo-img logo-img-dark" src="icons/graylight-lockup-dark.png" width="1536" height="336" alt="">
         </a>
         <div class="nav-right">
             <ul class="nav-menu" id="navMenu">
@@ -37,12 +66,13 @@
                 <li><a href="#apps" class="nav-link">Apps</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a target="_blank" rel="noopener noreferrer" href="https://graylightapp.blogspot.com" class="nav-link">Blog</a></li>
+                <!-- Blog link hidden for now; remove the hidden attribute to show it again. -->
+                <li hidden><a target="_blank" rel="noopener noreferrer" href="https://graylightapp.blogspot.com" class="nav-link">Blog</a></li>
             </ul>
             <div class="nav-actions">
-                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-                    <!-- Sun Icon (for Dark Mode state) -->
-                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+                    <!-- Sun icon (shown in dark mode) -->
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
                         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -53,12 +83,12 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                    <!-- Moon Icon (for Light Mode state) -->
-                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Moon icon (shown in light mode) -->
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-                <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation">
+                <button id="menuToggle" class="menu-toggle" type="button" aria-label="Toggle navigation" aria-controls="navMenu" aria-expanded="false">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -68,151 +98,112 @@
     </nav>
 </header>
 
-<main>
-    <!-- Hero Section -->
+<main id="main">
+    <!-- Hero: the apps themselves are the visual -->
     <section id="home" class="hero">
-        <div class="container hero-content-wrapper">
-            <div class="hero-content fade-in-up">
-                <span class="hero-badge">Android App Development Studio</span>
-                <h1>Crafting Simplicity, Boosting Productivity.</h1>
-                <p>We build lightweight, secure, and clean utility apps. Our goal is to streamline daily tasks, eliminate bloatware, and place essential tools directly in your hands.</p>
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <h1>Small Android apps that do one thing well.</h1>
+                <p class="hero-lead">Gray Light is an independent studio in Bursa, T&uuml;rkiye. QR scanning, unit conversion, focus timing, prayer times and more, all on Google Play.</p>
                 <div class="hero-buttons">
-                    <a href="#apps" class="btn btn-primary">Explore Our Apps</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                    <a href="#apps" class="btn btn-primary">Browse apps</a>
+                    <a href="#contact" class="btn btn-secondary">Contact us</a>
                 </div>
             </div>
-            <div class="hero-graphic fade-in-up delay-1">
-                <!-- Abstract visual representing simplicity/speed -->
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="screen-header"></div>
-                        <div class="screen-body">
-                            <div class="widget widget-1"></div>
-                            <div class="widget widget-2"></div>
-                            <div class="widget widget-3"></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero-showcase">
+                <div class="icon-wall" id="heroIcons" role="list" aria-label="Gray Light apps"></div>
+                <p class="showcase-note">Select an icon to open the app on Google Play.</p>
             </div>
-        </div>
-        <div class="scroll-down-indicator">
-            <a href="#apps" aria-label="Scroll to Apps">
-                <span class="mouse">
-                    <span class="wheel"></span>
-                </span>
-            </a>
         </div>
     </section>
 
     <!-- Apps Section -->
-    <section id="apps" class="section scroll-reveal">
+    <section id="apps" class="section">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Android Apps</h2>
-                <p>Designed with a minimalist philosophy—no annoying permissions, fast load times, and clean UI.</p>
-                <div class="layout-switch-container">
-                    <span>Layout:</span>
-                    <div class="layout-toggle-buttons">
-                        <button id="gridBtn" class="layout-btn active" title="Grid Layout">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                        </button>
-                        <button id="sliderBtn" class="layout-btn" title="Slider Layout">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="14" y1="6" x2="20" y2="12"></line><line x1="14" y1="18" x2="20" y2="12"></line></svg>
-                        </button>
-                    </div>
+            <div class="section-head">
+                <div class="section-head-text">
+                    <h2>Our apps</h2>
+                    <p>Each app has one job and is built to open fast and stay out of the way.</p>
+                </div>
+                <div class="rail-controls">
+                    <button class="rail-arrow prev" id="prevBtn" type="button" aria-label="Previous apps">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button class="rail-arrow next" id="nextBtn" type="button" aria-label="Next apps">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
                 </div>
             </div>
-            
-            <!-- Layout 1: Grid -->
-            <div class="app-grid" id="appGrid"></div>
-            
-            <!-- Layout 2: Slider -->
-            <div class="slider-wrapper" id="sliderWrapper" style="display: none;">
-                <div class="slider-container">
-                    <div class="app-slider" id="appSlider"></div>
-                </div>
-                <div class="slider-controls">
-                    <button class="slider-arrow prev" id="prevBtn" aria-label="Previous App">&#10094;</button>
-                    <button class="slider-arrow next" id="nextBtn" aria-label="Next App">&#10095;</button>
-                </div>
-                <div class="slider-dots" id="sliderDots"></div>
-            </div>
+
+            <!-- Apps rail: scrolls sideways, two rows on desktop -->
+            <div class="app-rail" id="appGrid" tabindex="0" role="region" aria-label="Gray Light apps, scroll sideways"></div>
+            <div class="rail-progress" aria-hidden="true"><span id="railThumb"></span></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section scroll-reveal">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-visual">
-                    <div class="card-stack">
-                        <div class="stack-card card-top">
-                            <div class="card-icon">⚡</div>
-                            <h4>Fast & Clean</h4>
-                            <p>Optimized for minimal resource consumption.</p>
-                        </div>
-                        <div class="stack-card card-mid">
-                            <div class="card-icon">🛡️</div>
-                            <h4>Privacy First</h4>
-                            <p>No intrusive tracking or permissions required.</p>
-                        </div>
-                        <div class="stack-card card-bot">
-                            <div class="card-icon">✨</div>
-                            <h4>Simple Design</h4>
-                            <p>Intuitive user interface for frictionless use.</p>
-                        </div>
+    <section id="about" class="section section-alt">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>About Gray Light</h2>
+                <p>Gray Light is a small studio that builds utility apps for Android. We keep every app focused on a single job, make it quick to open, and explain how it handles data in a plain privacy policy.</p>
+                <p>We would rather ship a few tools that work well than a crowded app that tries to do everything.</p>
+                <dl class="facts">
+                    <div>
+                        <dt>Based in</dt>
+                        <dd>Bursa, T&uuml;rkiye</dd>
                     </div>
-                </div>
-                <div class="about-content-text">
-                    <h2>About Us</h2>
-                    <p>At <strong>Gray Light</strong>, we understand that in today’s fast-paced digital world, simplicity is power. Our mission is to clear away unnecessary complexity, allowing technology to serve as a seamless tool that empowers rather than overwhelms.</p>
-                    <p>Every product we build reflects our commitment to intuitive design, performance, and respect for user privacy. We believe great software should feel natural and effortless, integrating smoothly into your daily workflow without distractions or burdensome permissions.</p>
-                    <p>Our minimalist philosophy means we focus only on what truly matters — features that enhance your efficiency and interactions that feel fluid and purposeful. Less is more, and simplicity is the ultimate sophistication.</p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-num">10+</span>
-                            <span class="stat-label">Active Apps</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-num">100%</span>
-                            <span class="stat-label">Secure</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-num">0</span>
-                            <span class="stat-label">Ads Spam</span>
-                        </div>
+                    <div>
+                        <dt>Platform</dt>
+                        <dd>Android, on Google Play</dd>
                     </div>
-                </div>
+                    <div>
+                        <dt>Apps</dt>
+                        <dd>10+ and growing</dd>
+                    </div>
+                </dl>
             </div>
+            <ul class="principles">
+                <li>
+                    <h3>Fast and light</h3>
+                    <p>Small installs and quick starts, without extra features you did not ask for.</p>
+                </li>
+                <li>
+                    <h3>Focused</h3>
+                    <p>One clear job per app, with an interface that explains itself.</p>
+                </li>
+                <li>
+                    <h3>Open about data</h3>
+                    <p>How each app treats your data is written down in the <a href="privacy/index.html">privacy policy</a>.</p>
+                </li>
+            </ul>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section scroll-reveal">
-        <div class="container">
-            <div class="contact-card">
-                <h2>Get In Touch</h2>
-                <p>Have questions, feedback, or a partnership idea? We'd love to hear from you. Tap below to copy our email or write to us.</p>
-                
+    <section id="contact" class="section">
+        <div class="container contact-grid">
+            <div class="contact-text">
+                <h2>Contact</h2>
+                <p>Questions, feedback or a partnership idea? Write to us by email. Select the address to copy it.</p>
                 <div class="email-copy-wrapper">
-                    <button class="contact-email" id="emailBtn" data-email="graylight.destek@gmail.com" title="Click to copy email">
+                    <button class="contact-email" id="emailBtn" type="button" data-email="graylight.destek@gmail.com" title="Click to copy email">
                         <span class="email-text">graylight.destek@gmail.com</span>
                         <span class="copy-icon">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                         </span>
-                        <span class="tooltip" id="emailTooltip">Copy to clipboard</span>
+                        <span class="tooltip" id="emailTooltip" role="status">Copy to clipboard</span>
                     </button>
                 </div>
-                
-                <div class="map-container">
-                    <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24243.23518991752!2d29.05958567055663!3d40.1921700684973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca15b2a6154f79%3A0x441442374b23e8d7!2sBursa%2C%20T%C3%BCrkiye!5e0!3m2!1sen!2s!4v1688927815432!5m2!1sen!2s"
-                            allowfullscreen=""
-                            loading="lazy"
-                            aria-label="Google Maps showing Bursa, Türkiye"
-                            referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+            </div>
+            <div class="map-container">
+                <iframe
+                        title="Map showing Bursa, Türkiye"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24243.23518991752!2d29.05958567055663!3d40.1921700684973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca15b2a6154f79%3A0x441442374b23e8d7!2sBursa%2C%20T%C3%BCrkiye!5e0!3m2!1sen!2s!4v1688927815432!5m2!1sen!2s"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
     </section>
@@ -222,11 +213,13 @@
 <footer class="footer">
     <div class="container footer-content">
         <p class="footer-text">
-            <span class="original-text">&copy; 2025 Gray Light. All Rights Reserved.</span>
-            <span class="hover-text">Lost them somewhere in the terms and conditions. If found, please return to the nearest developer. 😅</span>
+            <span>&copy; 2025&ndash;2026 Gray Light. All rights reserved.</span>
+            <span class="footer-tagline">Crafted in Bursa, T&uuml;rkiye.</span>
         </p>
         <div class="footer-links">
             <a href="privacy/index.html" class="footer-link">Privacy Policy</a>
+            <!-- Blog link hidden for now; remove the hidden attribute to show it again. -->
+            <a href="https://graylightapp.blogspot.com" class="footer-link" target="_blank" rel="noopener noreferrer" hidden>Blog</a>
         </div>
     </div>
 </footer>

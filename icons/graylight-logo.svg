@@ -1,0 +1,10 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">GRAY LIGHT</title>
+  <desc id="desc">Flat silver and cyan orbital arcs around the Gray Light wordmark.</desc>
+  <rect width="512" height="512" fill="#0B111B"/>
+  <g fill="none" stroke-linecap="butt">
+    <path d="M80 188 A194 196 0 0 1 432 188 M432 324 A194 196 0 0 1 80 324" stroke="#E7EEF4" stroke-width="7"/>
+    <path d="M119 205 A150 156 0 0 1 393 205 M393 307 A150 156 0 0 1 119 307" stroke="#59C9E0" stroke-width="4.5"/>
+  </g>
+  <text x="256" y="278" text-anchor="middle" fill="#E7EEF4" font-family="Georgia, 'Times New Roman', serif" font-size="51" letter-spacing="1.2">GRAY LIGHT</text>
+</svg>
